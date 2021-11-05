@@ -11,8 +11,8 @@ class LoanCalculatorTest {
 
     @Test
     void calculateCalendar() {
-        List<Float> payments = LoanCalculator.calculateCalendar(60, 1000, 10);
-        Float expected = 3_226.72f;
+        List<Float> payments = LoanCalculator.calculateCalendar(60, 100_000, 10);
+        Float expected = 2_124.70f;
         assertEquals(payments.get(2), expected);
     }
 }
