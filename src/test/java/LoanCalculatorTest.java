@@ -1,15 +1,10 @@
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
 import java.util.stream.Stream;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class LoanCalculatorTest {
 
@@ -19,9 +14,9 @@ class LoanCalculatorTest {
         double payment = LoanCalculator.calculateCalendar(month, sum, percent);
 
         double yearPercent = 1 + (((double) percent) / 100);
-        double monthPercent = Math.pow((double) yearPercent, 1.0 / 12) ;
+        double monthPercent = Math.pow(yearPercent, 1.0 / 12) ;
 
-        double balance = (double) sum;
+        double balance = sum;
         for (int i = 1; i < month; i++) {
             balance = balance * (monthPercent);
             balance -= payment;
