@@ -18,19 +18,15 @@ class LoanCalculatorTest {
     void calculateCalendar(int month, int sum, int percent) {
         double payment = LoanCalculator.calculateCalendar(month, sum, percent);
 
-        double monthPercent = Math.pow((double) percent, 1.0 / 12);
+        double yearPercent = 1 + (((double) percent) / 100);
+        double monthPercent = Math.pow((double) yearPercent, 1.0 / 12) ;
 
         double balance = (double) sum;
         for (int i = 1; i < month; i++) {
-            double oldSum = balance;
-            balance = balance * monthPercent;
-            double percents = balance - oldSum;
+            balance = balance * (monthPercent);
             balance -= payment;
-            double telo = payment - percents;
-
-            //System.out.printf("%d. pay = %.2f --- percents = %.2f --- telo = %.2f  --- ost = %.2f \n", i, payment, percents, telo, balance);
         }
-        assertEquals(balance, 0);
+        assertEquals(Math.round(balance), 0);
     }
 
     static Stream<Arguments> mySource() {
